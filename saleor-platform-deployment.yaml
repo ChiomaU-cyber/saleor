@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: saleor-platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: saleor-platform
+  template:
+    metadata:
+      labels:
+        app: saleor-platform
+    spec:
+      containers:
+        - name: saleor-backend
+          image: your_saleor_backend_image
+          ports:
+            - containerPort: 8000
+        - name: redis
+          image: redis:latest
+        - name: postgresql
+          image: postgres:latest
